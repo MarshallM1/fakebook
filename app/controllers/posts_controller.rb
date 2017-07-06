@@ -23,6 +23,14 @@ class PostsController < ApplicationController
   	@user=@post.user
   end
 
+  def index
+  	@feed_ids = [current_user.id]
+  	@feed_ids += current_user.active_friends.ids
+  	@feed_ids += current_user.received_friends.ids
+  	@feed = Post.where(user_id: @feed_ids)
+  	@posts = @feed.paginate(page: params[:page])
+  end
+
   private
 
     def post_params

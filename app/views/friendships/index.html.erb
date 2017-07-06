@@ -1,0 +1,10 @@
+<ul>
+    <% current_user.requested_friendships.each do |request| %>
+    <li>
+      <%= "#{request.first_name} #{request.last_name}"  %>
+      <% @request_id = Friendship.find_by user_id: request.id, friend_id: current_user %>
+      <%= link_to "Accept",  friendship_path(id: @request_id), method: "put" %>
+      <%= link_to "Decline", friendship_path(id: @request_id), method: :delete %>
+    </li>
+  <% end %>
+</ul>

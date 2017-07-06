@@ -1,13 +1,10 @@
-<li id="post-<%= post.id %>">
-  <span class="user"><%= link_to "#{post.user.first_name} #{post.user.last_name}", post.user %></span>
-  <span class="content">
-  	<%= post.content %>
-  </span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-    <% if current_user == (post.user) %>
-      <%= link_to "delete", post, method: :delete,
-                                       data: { confirm: "You sure?" } %>
-    <% end %>
-  </span>
-</li>
+<a href= <%= user_path(post.user) %> class="list-group-item">
+  <h4 class="list-group-item-heading"><%= "#{post.user.first_name} #{post.user.last_name}"%> </h4>
+  <p class="list-group-item-text"><%= post.content %></p>
+  <p class="list-group-item-text">
+      Posted <%= time_ago_in_words(post.created_at) %> ago.
+  </p>
+</a>
+<% if current_user == (post.user) %>
+  <%= link_to "delete", post, method: :delete, data: { confirm: "You sure?" } %>
+<% end %>

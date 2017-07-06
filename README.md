@@ -1,24 +1,34 @@
-# README
+# FAKEBOOK
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple facebook clone, with the following features:
 
-Things you may want to cover:
+User authentication using Devise.
+Friends (with friend requests).
+Ability to submit text posts.
+A user profile, showing a users submitted posts.
+A feed, showing posts from the user and their friends.
 
-* Ruby version
+## Getting started
 
-* System dependencies
+To get started with the app, clone the repo and then install the needed gems:
 
-* Configuration
+```
+$ bundle install --without production
+```
 
-* Database creation
+Next, migrate the database:
 
-* Database initialization
+```
+$ rails db:migrate
+```
 
-* How to run the test suite
+Finally, run the test suite to verify that everything is working correctly:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails test
+```
 
-* Deployment instructions
+If the test suite passes, you'll be ready to run the app in a local server:
 
-* ...
+```
+$ rails server
