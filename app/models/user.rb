@@ -20,6 +20,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :posts_liked, through: :likes, source: :post
 
+  has_many :comments, dependent: :destroy
+  has_many :posts_commented, through: :comments, source: :post
+
   def friends
     active_friends | received_friends
   end

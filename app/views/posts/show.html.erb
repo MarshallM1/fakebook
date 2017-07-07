@@ -1,11 +1,21 @@
 <% provide(:title, "#{@user.first_name} #{@user.last_name} | FakeBook") %>
 <div class="row">
-  <section class="user_info">
+  <section>
     <h1>
       <%= "#{@user.first_name} #{@user.last_name}" %>
     </h1>
-    <p>
+    <h2>
     	<%= @post.content %>
-    </p>
+    </h2>
+    <small>Posted <%= time_ago_in_words(@post.created_at) %> ago.</small>
+    <section class="comment">
+    	<h3> Comments: </h3>
+    	<% unless @post.comments.empty? %>
+    		<%= render "shared/post_comments", post: @post %>
+    	<% end %>
+    </section>
+    <section class="comments_form">
+    	<%= render "shared/comment_form", post: @post %>
+    </section>
   </section>
 </div>

@@ -1,0 +1,18 @@
+<div class="container-fluid">
+	<div class="list-group">
+		<% post.comments.each do |comment| %>
+			<div class="list-group-item">
+  			<h4 class="list-group-item-heading"> <%= link_to "#{comment.user.first_name} #{comment.user.last_name}", user_path(comment.user)%> </h4>
+  			<p class="list-group-item-text"><%= comment.body %></p>
+  			<p class="list-group-item-text">
+      		Posted <%= time_ago_in_words(comment.created_at) %> ago.
+  			</p>
+  			<p class="list-group-item-text delete">
+	  			<% if current_user == (comment.user) %>
+	  				<%= link_to "delete comment", comment, method: :delete, data: { confirm: "You sure?" }%>
+					<% end %>
+				</p>
+  		</div>
+  	<% end %>
+	</div>
+</div>

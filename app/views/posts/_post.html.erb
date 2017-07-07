@@ -6,12 +6,23 @@
   </p>
   <p class="list-group-item-text">
   	<% if post.likes.any? %>
-  		<%= "#{post.likes.first.user.first_name} #{post.likes.first.user.last_name} and #{pluralize(post.likes.count-1, 'others')} have liked this post" %>
+  		<% if post.likes.count > 1 %>
+  			<%= "#{post.likes.first.user.first_name} #{post.likes.first.user.last_name} and #{pluralize(post.likes.count-1, 'other')} have liked this post" %>
+  		<% else %>
+  			<%= "#{post.likes.first.user.first_name} #{post.likes.first.user.last_name} has liked this post" %>
+  		<% end %>
   	<% end %>
     <% if post.likes.any? {|h| h[:user_id] == current_user.id} %>
     	<%= link_to "Unlike Post", like_path(post), method: :delete  %>
     <% else %>
     	<%= link_to "Like Post", likes_path(:id => post.id), method: :post  %>
+  	<% end %>
+  </p>
+  <p class="list-group-item-text">
+  	<% if post.comments.any? %>
+  		<%= link_to "View Comments (#{post.comments.count})", post_path(post) %>
+  	<% else %>
+  		<%= link_to "Comment", post_path(post) %>
   	<% end %>
   </p>
   <p class="list-group-item-text delete">
