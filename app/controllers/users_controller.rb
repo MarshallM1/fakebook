@@ -9,4 +9,13 @@ class UsersController < ApplicationController
 	def index
 		@users = User.paginate(page: params[:page])
 	end
+
+	def show_friends
+		@user  = User.find(params[:id])
+  	@friend_ids = @user.active_friends.ids
+  	@friend_ids += @user.received_friends.ids
+  	@friends = User.where(id: @friend_ids)
+		@users = @friends.paginate(page: params[:page])
+    render 'show_friends'
+	end
 end

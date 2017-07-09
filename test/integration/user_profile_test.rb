@@ -18,6 +18,6 @@ class UserProfileTest < ActionDispatch::IntegrationTest
   test "show other user page if logged in" do
     sign_in users(:michael)
     get user_path(users(:archer))
-    assert_template 'users/show'
+    assert_template 'users/show'  
   end
 end

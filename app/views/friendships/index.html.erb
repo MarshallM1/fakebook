@@ -1,10 +1,28 @@
+<% provide(:title, "Friend Requests | FakeBook") %>
+
+<h2> Friend Requests </h2>
+
 <ul>
     <% current_user.requested_friendships.each do |request| %>
     <li>
-      <%= "#{request.first_name} #{request.last_name}"  %>
+      <%= link_to "#{request.first_name} #{request.last_name}", request %>
+       | 
       <% @request_id = Friendship.find_by user_id: request.id, friend_id: current_user %>
       <%= link_to "Accept",  friendship_path(id: @request_id), method: "put" %>
       <%= link_to "Decline", friendship_path(id: @request_id), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Pending Friends</h2>
+
+<ul>
+    <% current_user.pending_friends.each do |request| %>
+    <li>
+      <%= link_to "#{request.first_name} #{request.last_name}", request  %>
+       | 
+      <% @request_id = Friendship.find_by user_id: current_user, friend_id: request.id %>
+      <%= link_to "Cancel", friendship_path(id: @request_id), method: :delete %>
     </li>
   <% end %>
 </ul>
