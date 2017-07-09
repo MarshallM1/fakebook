@@ -11,7 +11,7 @@ A simple facebook clone, with the following features:
 * A user profile, showing a users submitted posts.
 * A feed, showing posts from the user and their friends.
 
-# View the app live on [https://whispering-bastion-95435.herokuapp.com/](Heroku):
+# View the app live on [Heroku](https://whispering-bastion-95435.herokuapp.com/):
 
 Log in with the seeded accounts:
 
